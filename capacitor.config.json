@@ -1,8 +1,7 @@
 {
   "appId": "com.nec.wirecalculator",
   "appName": "NEC Wire Calculator",
-  "webDir": ".",
-  "bundledWebRuntime": false,
+  "webDir": "www",
   "ios": {
     "contentInset": "automatic"
   }
