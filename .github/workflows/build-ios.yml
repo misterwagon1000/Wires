@@ -26,8 +26,9 @@ jobs:
 
       - name: Build web assets
         run: |
-          # If you add a build step later (e.g. Vite/React), put it here
-          echo "Web assets ready (static HTML/JS project)"
+          mkdir -p www
+          cp -r index.html css js public manifest.json www/ 2>/dev/null || true
+          echo "Web assets copied to www/"
 
       - name: Install Capacitor CLI
         run: npm install -g @capacitor/cli
