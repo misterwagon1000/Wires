@@ -56,11 +56,27 @@ jobs:
             archive \
             CODE_SIGNING_ALLOWED=NO
 
+      - name: Create IPA from archive
+        run: |
+          cd ios/App
+          mkdir -p build/ipa/Payload
+          cp -R build/App.xcarchive/Products/Applications/*.app build/ipa/Payload/
+          cd build/ipa
+          zip -r ../NECWireCalculator.ipa Payload
+          echo "IPA created"
+
       - name: Upload archive artifact
         uses: actions/upload-artifact@v4
         with:
           name: ios-archive
           path: ios/App/build/App.xcarchive
+          retention-days: 7
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: ios/App/build/NECWireCalculator.ipa
           retention-days: 7
 
       # Optional: signed build (requires paid Apple Developer account + secrets)
